@@ -1,26 +1,39 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { About } from "@/components/portfolio/about";
+import { Contact } from "@/components/portfolio/contact";
+import { CursorGlow } from "@/components/portfolio/cursor-glow";
+import { Experience } from "@/components/portfolio/experience";
+import { Footer } from "@/components/portfolio/footer";
+import { GithubStats } from "@/components/portfolio/github-stats";
+import { Hero } from "@/components/portfolio/hero";
+import { LoadingScreen } from "@/components/portfolio/loading-screen";
+import { Navbar } from "@/components/portfolio/navbar";
+import { Projects } from "@/components/portfolio/projects";
+import { Skills } from "@/components/portfolio/skills";
+import { ThemeProvider } from "@/components/portfolio/theme-provider";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  return (
+    <ThemeProvider>
+      <LoadingScreen />
+      <CursorGlow />
+      <div className="relative min-h-screen">
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Experience />
+          <Projects />
+          <GithubStats />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </ThemeProvider>
+  );
 }

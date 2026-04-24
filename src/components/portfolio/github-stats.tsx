@@ -1,4 +1,4 @@
-import { motion } from "framer-motion">
+import { motion } from "framer-motion";
 import { GitBranch, GitCommit, Github, Star } from "lucide-react";
 import { Section } from "./section";
 
