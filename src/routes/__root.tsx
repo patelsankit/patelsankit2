@@ -45,6 +45,12 @@ export const Route = createRootRoute({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Sankit Parasiya — Frontend Developer" },
+      { name: "description", content: "Sankit's Studio is a modern, premium portfolio website built with Next.js, Tailwind CSS, and Framer Motion." },
+      { property: "og:description", content: "Sankit's Studio is a modern, premium portfolio website built with Next.js, Tailwind CSS, and Framer Motion." },
+      { name: "twitter:description", content: "Sankit's Studio is a modern, premium portfolio website built with Next.js, Tailwind CSS, and Framer Motion." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0a2780ef-5fee-4fd4-a6a6-5de5d86b310c/id-preview-439f4a9a--40a13aea-4a20-4952-ac89-ec775f601049.lovable.app-1777023914715.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0a2780ef-5fee-4fd4-a6a6-5de5d86b310c/id-preview-439f4a9a--40a13aea-4a20-4952-ac89-ec775f601049.lovable.app-1777023914715.png" },
     ],
     links: [
       {
