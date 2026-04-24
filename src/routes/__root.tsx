@@ -29,11 +29,19 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Sankit Parasiya — Frontend Developer" },
+      {
+        name: "description",
+        content:
+          "Frontend Developer with 2+ years building scalable, user-focused web apps in React, Next.js, and Tailwind.",
+      },
+      { name: "author", content: "Sankit Parasiya" },
+      { property: "og:title", content: "Sankit Parasiya — Frontend Developer" },
+      {
+        property: "og:description",
+        content:
+          "Premium frontend developer portfolio — React, Next.js, Tailwind, TypeScript.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
@@ -42,6 +50,12 @@ export const Route = createRootRoute({
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap",
       },
     ],
   }),
