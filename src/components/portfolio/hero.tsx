@@ -50,7 +50,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
           className="mt-5 text-xl sm:text-2xl"
         >
-          <span className="text-gradient font-medium">Frontend Developer</span>
+          <span className="font-medium text-foreground">Frontend Developer</span>
           <span className="text-muted-foreground"> crafting refined web experiences</span>
         </motion.p>
 
@@ -72,7 +72,7 @@ export function Hero() {
         >
           <a
             href="#projects"
-            className="group inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-elegant transition-transform hover:scale-[1.03]"
+            className="group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background shadow-soft transition-all hover:opacity-90"
           >
             View Projects
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

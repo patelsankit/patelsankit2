@@ -22,7 +22,7 @@ export function LoadingScreen() {
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="flex flex-col items-center gap-4"
           >
-            <div className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-primary text-primary-foreground text-xl font-bold shadow-elegant">
+            <div className="grid h-14 w-14 place-items-center rounded-2xl bg-foreground text-background text-xl font-bold">
               S
             </div>
             <div className="h-0.5 w-32 overflow-hidden rounded-full bg-muted">
@@ -30,7 +30,7 @@ export function LoadingScreen() {
                 initial={{ x: "-100%" }}
                 animate={{ x: "100%" }}
                 transition={{ duration: 0.9, ease: "easeInOut" }}
-                className="h-full w-1/2 bg-gradient-primary"
+                className="h-full w-1/2 bg-foreground"
               />
             </div>
           </motion.div>

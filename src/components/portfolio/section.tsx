@@ -28,7 +28,8 @@ export function Section({
             className="mb-14 max-w-2xl"
           >
             {eyebrow && (
-              <span className="inline-block text-xs font-medium uppercase tracking-[0.18em] text-primary">
+              <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                <span className="h-px w-6 bg-foreground/40" />
                 {eyebrow}
               </span>
             )}

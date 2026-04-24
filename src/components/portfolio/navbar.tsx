@@ -21,7 +21,7 @@ export function Navbar() {
     >
       <nav className="flex items-center justify-between gap-4 rounded-full border border-border/60 bg-background/60 px-5 py-2.5 shadow-soft backdrop-blur-xl">
         <a href="#home" className="flex items-center gap-2 font-semibold tracking-tight">
-          <span className="grid h-7 w-7 place-items-center rounded-full bg-gradient-primary text-primary-foreground text-xs font-bold">
+          <span className="grid h-7 w-7 place-items-center rounded-full bg-foreground text-background text-xs font-bold">
             S
           </span>
           <span className="hidden sm:inline">Sankit</span>

@@ -64,13 +64,8 @@ export function Projects() {
         whileHover={{ y: -4 }}
         className="group relative mb-10 overflow-hidden rounded-3xl border border-border bg-card p-8 sm:p-12 shadow-soft hover:shadow-lift transition-shadow"
       >
-        <div
-          aria-hidden
-          className="absolute -top-32 -right-32 h-80 w-80 rounded-full opacity-20 blur-3xl"
-          style={{ background: "var(--gradient-primary)" }}
-        />
         <div className="relative">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-xs font-medium text-accent-foreground">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-3 py-1 text-xs font-medium text-muted-foreground">
             <Sparkles className="h-3 w-3" />
             Featured Project
           </span>
@@ -107,7 +102,7 @@ export function Projects() {
           >
             <div className="flex items-start justify-between gap-4">
               <h3 className="text-xl font-semibold tracking-tight">{p.title}</h3>
-              <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-all group-hover:text-primary group-hover:rotate-12" />
+              <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-all group-hover:text-foreground group-hover:rotate-12" />
             </div>
             <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{p.description}</p>
             <div className="mt-5 flex flex-wrap gap-2">

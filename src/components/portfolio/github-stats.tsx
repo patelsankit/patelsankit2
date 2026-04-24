@@ -27,7 +27,7 @@ export function GithubStats() {
             whileHover={{ y: -4 }}
             className="rounded-2xl border border-border bg-card p-6 shadow-soft hover:shadow-elegant transition-shadow"
           >
-            <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-primary text-primary-foreground">
+            <div className="grid h-10 w-10 place-items-center rounded-xl bg-foreground text-background">
               <s.icon className="h-5 w-5" />
             </div>
             <div className="mt-4 text-3xl font-semibold tracking-tight">{s.value}</div>
