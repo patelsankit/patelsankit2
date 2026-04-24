@@ -33,7 +33,7 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "Frontend Developer with 2+ years building scalable, user-focused web apps in React, Next.js, and Tailwind.",
+          "Frontend Developer with 5+ years building scalable, user-focused web apps in React, Next.js, and Tailwind.",
       },
       { name: "author", content: "Sankit Parasiya" },
       { property: "og:title", content: "Sankit Parasiya — Frontend Developer" },
