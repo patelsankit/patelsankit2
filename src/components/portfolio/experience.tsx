@@ -60,7 +60,7 @@ export function Experience() {
                 <div className="absolute left-4 md:left-1/2 top-2 -translate-x-1/2 grid h-3 w-3 place-items-center">
                   <span className="h-3 w-3 rounded-full bg-gradient-primary ring-4 ring-background" />
                 </div>
-                <div className="text-xs font-medium uppercase tracking-[0.15em] text-primary">
+                <div className="text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
                   {exp.period}
                 </div>
                 <h3 className="mt-2 text-xl font-semibold tracking-tight">{exp.role}</h3>

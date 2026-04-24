@@ -21,8 +21,7 @@ export function About() {
           className="md:col-span-2"
         >
           <div className="relative mx-auto max-w-sm">
-            <div className="absolute -inset-4 rounded-3xl bg-gradient-primary opacity-15 blur-2xl" />
-            <div className="relative overflow-hidden rounded-3xl border border-border bg-card shadow-lift">
+            <div className="relative overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
               <img
                 src={portrait}
                 alt="Portrait of Sankit Parasiya"
@@ -58,9 +57,9 @@ export function About() {
             {stats.map((s) => (
               <div
                 key={s.label}
-                className="rounded-2xl border border-border bg-card p-4 shadow-soft transition-transform hover:-translate-y-1"
+                className="rounded-xl border border-border bg-card p-4 transition-colors hover:bg-muted"
               >
-                <div className="text-2xl font-semibold text-gradient">{s.value}</div>
+                <div className="text-2xl font-semibold tracking-tight">{s.value}</div>
                 <div className="mt-1 text-xs text-muted-foreground">{s.label}</div>
               </div>
             ))}

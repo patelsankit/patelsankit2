@@ -48,7 +48,7 @@ export function Contact() {
               href={c.href}
               className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-5 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elegant"
             >
-              <div className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-primary text-primary-foreground">
+              <div className="grid h-11 w-11 place-items-center rounded-xl bg-foreground text-background">
                 <c.icon className="h-5 w-5" />
               </div>
               <div>
@@ -94,7 +94,7 @@ export function Contact() {
           />
           <button
             type="submit"
-            className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-elegant transition-transform hover:scale-[1.01]"
+            className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
           >
             {sent ? "Message sent ✓" : "Send Message"}
             {!sent && (
