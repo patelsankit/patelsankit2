@@ -60,8 +60,9 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
           className="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed"
         >
-          Frontend Developer with 2+ years of experience building scalable and
-          user-focused web applications.
+          Frontend Developer with 5+ years of experience building scalable and
+          user-focused web applications. I prioritize clear content structure,
+          clean design patterns, and meaningful interactions.
         </motion.p>
 
         <motion.div
