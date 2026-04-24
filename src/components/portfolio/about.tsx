@@ -3,8 +3,8 @@ import portrait from "@/assets/portrait.jpg";
 import { Section } from "./section";
 
 const stats = [
-  { value: "2+", label: "Years Experience" },
-  { value: "15+", label: "Projects Shipped" },
+  { value: "5+", label: "Years Experience" },
+  { value: "20+", label: "Projects Shipped" },
   { value: "5", label: "Companies" },
   { value: "100%", label: "Pixel Perfect" },
 ];
@@ -43,14 +43,15 @@ export function About() {
         >
           <p>
             I'm a Frontend Developer with{" "}
-            <span className="text-foreground font-medium">2+ years of experience</span> building
-            scalable, user-focused web applications. Currently at Bacancy Technology, I work with{" "}
-            <span className="text-foreground font-medium">React, Next.js, and Tailwind</span> to
-            ship clean, performant interfaces.
+            <span className="text-foreground font-medium">5+ years of experience</span> building
+            and improving user-focused web applications. Currently at Bacancy Technology, I work
+            with <span className="text-foreground font-medium">React, Next.js, and Tailwind</span>{" "}
+            to ship clean, performant interfaces.
           </p>
           <p>
-            My focus is on pixel-perfect UI, smooth interactions, and responsive design — turning
-            thoughtful product ideas into elegant, accessible experiences.
+            I prioritize clear content structure, clean design patterns, and meaningful
+            interactions — turning thoughtful product ideas into elegant, accessible experiences
+            across every device.
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
