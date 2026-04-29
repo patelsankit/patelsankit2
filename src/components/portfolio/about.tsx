@@ -15,6 +15,7 @@ export function About() {
       <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-soft" />
       <div aria-hidden className="absolute inset-0 -z-10 noise opacity-60" />
       <div className="grid gap-12 md:grid-cols-5 items-center">
+        {/*  */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
