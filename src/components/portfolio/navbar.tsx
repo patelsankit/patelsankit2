@@ -31,9 +31,11 @@ export function Navbar() {
     >
       <nav className="relative flex items-center justify-between gap-4 rounded-full border border-border/60 bg-background/60 px-5 py-3.5 shadow-soft backdrop-blur-xl">
         <a href="#home" className="flex items-center gap-2 font-semibold tracking-tight">
-          <span className="grid h-7 w-7 place-items-center rounded-full bg-foreground text-background text-xs font-bold">
-            S
-          </span>
+          <img
+            src="/favicon.png"
+            alt="Sankit Patel"
+            className="h-7 w-7 rounded-full object-cover"
+          />
           <span className="hidden sm:inline">Sankit Patel</span>
         </a>
 
