@@ -4,7 +4,6 @@ import { Contact } from "@/components/portfolio/contact";
 import { CursorGlow } from "@/components/portfolio/cursor-glow";
 import { Experience } from "@/components/portfolio/experience";
 import { Footer } from "@/components/portfolio/footer";
-import { GithubStats } from "@/components/portfolio/github-stats";
 import { Hero } from "@/components/portfolio/hero";
 import { LoadingScreen } from "@/components/portfolio/loading-screen";
 import { Navbar } from "@/components/portfolio/navbar";
@@ -29,7 +28,6 @@ function Index() {
           <Skills />
           <Experience />
           <Projects />
-          <GithubStats />
           <Contact />
         </main>
         <Footer />
