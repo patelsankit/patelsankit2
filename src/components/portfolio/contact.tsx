@@ -99,6 +99,8 @@ export function Contact() {
             <a
               key={c.label}
               href={c.href}
+              target={c.href.startsWith("http") ? "_blank" : undefined}
+              rel={c.href.startsWith("http") ? "noreferrer" : undefined}
               className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-5 shadow-soft transition-all hover:-translate-y-1 hover:shadow-elegant"
             >
               <div className="grid h-11 w-11 place-items-center rounded-xl bg-foreground text-background">
