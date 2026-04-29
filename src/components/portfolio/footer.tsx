@@ -17,6 +17,8 @@ export function Footer() {
             <a
               key={l.label}
               href={l.href}
+              target={l.href.startsWith("http") ? "_blank" : undefined}
+              rel={l.href.startsWith("http") ? "noreferrer" : undefined}
               aria-label={l.label}
               className="grid h-9 w-9 place-items-center rounded-full border border-border text-muted-foreground transition-all hover:scale-110 hover:text-foreground"
             >
