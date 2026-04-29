@@ -11,9 +11,12 @@ const links = [
   { href: "#contact", label: "Contact" },
 ];
 
+const skills = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js"];
+
 export function Navbar() {
   const { theme, toggle } = useTheme();
   const [open, setOpen] = useState(false);
+  const [profileHover, setProfileHover] = useState(false);
 
   useEffect(() => {
     if (!open) return;
@@ -30,14 +33,64 @@ export function Navbar() {
       className="fixed top-4 left-1/2 z-50 -translate-x-1/2 w-[min(95%,1104px)]"
     >
       <nav className="relative flex items-center justify-between gap-4 rounded-full border border-border/60 bg-background/60 px-5 py-3.5 shadow-soft backdrop-blur-xl">
-        <a href="#home" className="flex items-center gap-2 font-semibold tracking-tight">
-          <img
-            src="/favicon.png"
-            alt="Sankit Patel"
-            className="h-7 w-7 rounded-full object-cover"
-          />
-          <span className="hidden sm:inline">Sankit Patel</span>
-        </a>
+
+        {/* Profile logo with hover card */}
+        <div
+          className="relative"
+          onMouseEnter={() => setProfileHover(true)}
+          onMouseLeave={() => setProfileHover(false)}
+        >
+          <a href="#home" className="flex items-center gap-2 font-semibold tracking-tight">
+            <img
+              src="/favicon.png"
+              alt="Sankit Patel"
+              className="h-7 w-7 rounded-full object-cover"
+            />
+            <span className="hidden sm:inline">Sankit Patel</span>
+          </a>
+
+          <AnimatePresence>
+            {profileHover && (
+              <motion.div
+                initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="absolute left-0 top-[calc(100%+12px)] w-72 rounded-2xl border border-border/60 bg-background/95 shadow-elegant backdrop-blur-xl p-4 pointer-events-none"
+              >
+                {/* Arrow */}
+                <div className="absolute -top-1.5 left-5 h-3 w-3 rotate-45 rounded-sm border-l border-t border-border/60 bg-background/95" />
+
+                <div className="flex items-center gap-3 mb-3">
+                  <img
+                    src="/favicon.png"
+                    alt="Sankit Patel"
+                    className="h-14 w-14 rounded-full object-cover ring-2 ring-border/60"
+                  />
+                  <div>
+                    <p className="font-semibold text-foreground text-sm leading-tight">Sankit Patel</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">Frontend Developer</p>
+                  </div>
+                </div>
+
+                <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+                  5+ years building scalable, user-focused web apps. Passionate about clean UI, performance, and great developer experience.
+                </p>
+
+                <div className="flex flex-wrap gap-1.5">
+                  {skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-2 py-0.5 rounded-full bg-muted text-muted-foreground text-[11px] font-medium border border-border/50"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
 
         <ul className="hidden md:flex items-center gap-1 text-sm">
           {links.map((l) => (
