@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Moon, Sun, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "./theme-provider";
 
 const links = [
@@ -17,12 +17,22 @@ export function Navbar() {
   const { theme, toggle } = useTheme();
   const [open, setOpen] = useState(false);
   const [profileHover, setProfileHover] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onOutsideClick = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    document.addEventListener("mousedown", onOutsideClick);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.removeEventListener("mousedown", onOutsideClick);
+    };
   }, [open]);
 
   return (
@@ -32,7 +42,7 @@ export function Navbar() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="fixed top-4 left-1/2 z-50 -translate-x-1/2 w-[min(95%,1104px)]"
     >
-      <nav className="relative flex items-center justify-between gap-4 rounded-full border border-border/60 bg-background/60 px-5 py-3.5 shadow-soft backdrop-blur-xl">
+      <nav ref={menuRef} className="relative flex items-center justify-between gap-4 rounded-full border border-border/60 bg-background/60 px-5 py-3.5 shadow-soft backdrop-blur-xl">
 
         {/* Profile logo with hover card */}
         <div
