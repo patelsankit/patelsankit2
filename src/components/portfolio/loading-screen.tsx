@@ -22,8 +22,13 @@ export function LoadingScreen() {
             transition={{ duration: 0.4, ease: "easeOut" }}
             className="flex flex-col items-center gap-4"
           >
-            <div className="grid h-14 w-14 place-items-center rounded-2xl bg-foreground text-background text-xl font-bold">
-              S
+            <div className="flex flex-col items-center gap-2">
+              <img
+                src="/favicon.png"
+                alt="Sankit Patel"
+                className="h-14 w-14 rounded-full object-cover"
+              />
+              <span className="text-sm font-semibold tracking-tight text-foreground">Sankit Patel</span>
             </div>
             <div className="h-0.5 w-32 overflow-hidden rounded-full bg-muted">
               <motion.div
