@@ -1,27 +1,34 @@
 import { motion } from "framer-motion";
 import { Section } from "./section";
 
+import htmlLogo from "@/assets/skills/htmllogo.png";
+import cssLogo from "@/assets/skills/csslogo.png";
+import jsLogo from "@/assets/skills/jslogo.png";
+import jqueryLogo from "@/assets/skills/jquerylogo.png";
+import tailwindLogo from "@/assets/skills/tailwindlogo.png";
+import bootstrapLogo from "@/assets/skills/bootstraplogo.png";
+import reactLogo from "@/assets/skills/reactlogo.png";
+import nextLogo from "@/assets/skills/nextlogo.png";
+import githubLogo from "@/assets/skills/githublogo.png";
+import figmaLogo from "@/assets/skills/figmalogo.png";
+
 type Skill = {
   name: string;
-  slug: string;
-  color: string;
+  image: string;
+  invert?: boolean;
 };
 
 const skills: Skill[] = [
-  { name: "HTML5", slug: "html5", color: "E34F26" },
-  { name: "CSS3", slug: "css3", color: "1572B6" },
-  { name: "JavaScript", slug: "javascript", color: "F7DF1E" },
-  { name: "TypeScript", slug: "typescript", color: "3178C6" },
-  { name: "React", slug: "react", color: "61DAFB" },
-  { name: "Next.js", slug: "nextdotjs", color: "FFFFFF" },
-  { name: "Tailwind CSS", slug: "tailwindcss", color: "06B6D4" },
-  { name: "SCSS", slug: "sass", color: "CC6699" },
-  { name: "Bootstrap", slug: "bootstrap", color: "7952B3" },
-  { name: "jQuery", slug: "jquery", color: "0769AD" },
-  { name: "Framer Motion", slug: "framer", color: "0055FF" },
-  { name: "Figma", slug: "figma", color: "F24E1E" },
-  { name: "GitHub", slug: "github", color: "FFFFFF" },
-  { name: "Vite", slug: "vite", color: "646CFF" },
+  { name: "HTML", image: htmlLogo },
+  { name: "CSS", image: cssLogo },
+  { name: "JS", image: jsLogo },
+  { name: "JQUERY", image: jqueryLogo },
+  { name: "TAILWIND CSS", image: tailwindLogo },
+  { name: "BOOTSTRAP", image: bootstrapLogo },
+  { name: "REACTJS", image: reactLogo },
+  { name: "NEXTJS", image: nextLogo },
+  { name: "GITHUB", image: githubLogo, invert: true },
+  { name: "FIGMA", image: figmaLogo },
 ];
 
 export function Skills() {
@@ -32,7 +39,7 @@ export function Skills() {
       title="Tech Stack"
       description="A curated stack I use to build modern, responsive, and maintainable web apps."
     >
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-4">
+      <div className="mx-auto max-w-4xl grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6">
         {skills.map((skill, i) => (
           <motion.div
             key={skill.name}
@@ -41,21 +48,17 @@ export function Skills() {
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.4, delay: i * 0.04, ease: "easeOut" }}
             whileHover={{ y: -4, scale: 1.05 }}
-            className="group flex flex-col items-center gap-3 rounded-2xl border border-border bg-card p-5 shadow-soft transition-all hover:shadow-elegant"
+            className="group relative flex aspect-square items-center justify-center rounded-3xl border border-border/40 bg-card/40 p-6 shadow-soft transition-all hover:border-border/80 hover:bg-card/80 hover:shadow-elegant"
+            title={skill.name}
           >
-            <div className="grid h-14 w-14 place-items-center">
-              <img
-                src={`https://cdn.simpleicons.org/${skill.slug}/${skill.color}`}
-                alt={`${skill.name} logo`}
-                width={48}
-                height={48}
-                loading="lazy"
-                className="h-12 w-12 transition-transform duration-300 group-hover:scale-110"
-              />
-            </div>
-            <span className="text-xs font-medium text-muted-foreground transition-colors group-hover:text-foreground">
-              {skill.name}
-            </span>
+            <img
+              src={skill.image}
+              alt={`${skill.name} logo`}
+              loading="lazy"
+              className={`h-16 w-16 object-contain transition-transform duration-300 group-hover:scale-110 ${
+                skill.invert ? "invert dark:invert-0" : ""
+              }`}
+            />
           </motion.div>
         ))}
       </div>

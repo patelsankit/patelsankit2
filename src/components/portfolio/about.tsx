@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import portrait from "@/assets/portrait.jpg";
+import portrait from "@/assets/sankit_patel.jpeg";
 import { Section } from "./section";
 
 const stats = [
@@ -12,6 +12,8 @@ const stats = [
 export function About() {
   return (
     <Section id="about" eyebrow="About" title="A frontend developer focused on detail">
+      <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-soft" />
+      <div aria-hidden className="absolute inset-0 -z-10 noise opacity-60" />
       <div className="grid gap-12 md:grid-cols-5 items-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -20,7 +22,7 @@ export function About() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="md:col-span-2"
         >
-          <div className="relative mx-auto max-w-sm">
+          <div className="relative mx-auto ">
             <div className="relative overflow-hidden rounded-2xl border border-border bg-card shadow-soft">
               <img
                 src={portrait}
@@ -42,22 +44,22 @@ export function About() {
           className="md:col-span-3 space-y-5 text-base sm:text-lg text-muted-foreground leading-relaxed"
         >
           <p>
-            Hello! My name is <span className="text-foreground font-medium">Sankit</span>. I am
-            an ambitious and skilled Frontend Developer with over{" "}
-            <span className="text-foreground font-medium">5+ years of practical experience</span>{" "}
-            in building and improving user-focused web applications. My expertise allows me to
-            create intuitive and responsive user interfaces. I prioritize clean, maintainable
-            code and follow best practices in web development.
+            Hello! My name is <span className="text-foreground font-medium">Sankit</span>. I am an
+            ambitious and skilled Frontend Developer with over{" "}
+            <span className="text-foreground font-medium">5+ years of practical experience</span> in
+            building and improving user-focused web applications. My expertise allows me to create
+            intuitive and responsive user interfaces. I prioritize clean, maintainable code and
+            follow best practices in web development.
           </p>
           <p>
             I am passionate about designing seamless user experiences across various devices. My
             deep understanding of web design principles ensures that my projects are visually
-            appealing and functional. Problem-solving and adapting to new challenges are key
-            aspects of my approach.
+            appealing and functional. Problem-solving and adapting to new challenges are key aspects
+            of my approach.
           </p>
           <p>
-            I continuously learn and stay up to date with industry trends. My goal is to
-            contribute to impactful, user-centered projects.
+            I continuously learn and stay up to date with industry trends. My goal is to contribute
+            to impactful, user-centered projects.
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">

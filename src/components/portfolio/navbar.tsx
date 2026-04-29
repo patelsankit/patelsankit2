@@ -27,14 +27,14 @@ export function Navbar() {
       initial={{ y: -30, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-4 left-1/2 z-50 -translate-x-1/2 w-[min(95%,920px)]"
+      className="fixed top-4 left-1/2 z-50 -translate-x-1/2 w-[min(95%,1104px)]"
     >
-      <nav className="relative flex items-center justify-between gap-4 rounded-full border border-border/60 bg-background/60 px-5 py-2.5 shadow-soft backdrop-blur-xl">
+      <nav className="relative flex items-center justify-between gap-4 rounded-full border border-border/60 bg-background/60 px-5 py-3.5 shadow-soft backdrop-blur-xl">
         <a href="#home" className="flex items-center gap-2 font-semibold tracking-tight">
           <span className="grid h-7 w-7 place-items-center rounded-full bg-foreground text-background text-xs font-bold">
             S
           </span>
-          <span className="hidden sm:inline">Sankit</span>
+          <span className="hidden sm:inline">Sankit Patel</span>
         </a>
 
         <ul className="hidden md:flex items-center gap-1 text-sm">
@@ -42,7 +42,7 @@ export function Navbar() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="px-3 py-1.5 rounded-full text-muted-foreground transition-colors hover:text-foreground hover:bg-muted"
+                className="px-3 py-1.5 rounded-full dark:text-white/80 transition-colors hover:text-foreground hover:bg-muted"
               >
                 {l.label}
               </a>

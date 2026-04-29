@@ -40,6 +40,8 @@ export function Experience() {
       title="A timeline of building things"
       description="A look at where I've spent my time and the products I've helped ship."
     >
+      <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-soft" />
+      <div aria-hidden className="absolute inset-0 -z-10 noise opacity-60" />
       <div className="relative">
         <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border" />
         <div className="space-y-12">

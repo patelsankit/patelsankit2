@@ -3,23 +3,14 @@ import { ArrowRight, Download, Github, Instagram, Linkedin, Mail } from "lucide-
 
 export function Hero() {
   return (
-    <section
-      id="home"
-      className="relative pt-36 sm:pt-44 pb-24 overflow-hidden"
-    >
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 bg-gradient-soft"
-      />
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 noise opacity-60"
-      />
-      <div
+    <section id="home" className="relative pt-36 sm:pt-44 pb-24 xl:pb-40 overflow-hidden">
+      <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-soft" />
+      <div aria-hidden className="absolute inset-0 -z-10 noise opacity-60" />
+      {/* <div
         aria-hidden
         className="absolute -top-32 left-1/2 -z-10 h-[600px] w-[900px] -translate-x-1/2 rounded-full opacity-30 blur-3xl"
         style={{ background: "var(--gradient-primary)" }}
-      />
+      /> */}
 
       <div className="mx-auto max-w-5xl px-6 text-center">
         <motion.div
@@ -58,11 +49,11 @@ export function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-          className="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed"
+          className="mx-auto mt-6 max-w-3.5xl text-base sm:text-lg text-muted-foreground leading-relaxed"
         >
-          Frontend Developer with 5+ years of experience building scalable and
-          user-focused web applications. I prioritize clear content structure,
-          clean design patterns, and meaningful interactions.
+          Frontend Developer with 5+ years of experience building scalable and user-focused web
+          applications. I prioritize clear content structure, clean design patterns, and meaningful
+          interactions.
         </motion.p>
 
         <motion.div

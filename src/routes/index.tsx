@@ -10,6 +10,7 @@ import { Navbar } from "@/components/portfolio/navbar";
 import { Projects } from "@/components/portfolio/projects";
 import { Skills } from "@/components/portfolio/skills";
 import { ThemeProvider } from "@/components/portfolio/theme-provider";
+import { BackToTop } from "@/components/portfolio/back-to-top";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -31,6 +32,7 @@ function Index() {
           <Contact />
         </main>
         <Footer />
+        <BackToTop />
       </div>
     </ThemeProvider>
   );
