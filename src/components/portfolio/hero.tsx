@@ -95,14 +95,14 @@ export function Hero() {
           className="mt-10 flex items-center justify-center gap-4 text-muted-foreground"
         >
           <a
-            href="mailto:patelsankit16@gmail.com"
+            href="mailto:patelsankit16@gmai.com"
             aria-label="Email"
             className="grid h-10 w-10 place-items-center rounded-full border border-border/60 transition-all hover:scale-110 hover:text-foreground"
           >
             <Mail className="h-4 w-4" />
           </a>
           <a
-            href="https://github.com/"
+            href="https://github.com/patelsankit"
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
@@ -111,7 +111,7 @@ export function Hero() {
             <Github className="h-4 w-4" />
           </a>
           <a
-            href="https://www.linkedin.com/"
+            href="https://in.linkedin.com/in/sankit-parasiya-82970416a"
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
