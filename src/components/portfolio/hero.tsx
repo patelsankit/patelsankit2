@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, Download, Github, Instagram, Linkedin, Mail } from "lucide-react";
 
 export function Hero() {
   return (
@@ -118,6 +118,15 @@ export function Hero() {
             className="grid h-10 w-10 place-items-center rounded-full border border-border/60 transition-all hover:scale-110 hover:text-foreground"
           >
             <Linkedin className="h-4 w-4" />
+          </a>
+          <a
+            href="https://www.instagram.com/sankitp6"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Instagram"
+            className="grid h-10 w-10 place-items-center rounded-full border border-border/60 transition-all hover:scale-110 hover:text-foreground"
+          >
+            <Instagram className="h-4 w-4" />
           </a>
         </motion.div>
       </div>
