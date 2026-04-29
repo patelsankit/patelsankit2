@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Linkedin, Mail, Phone, Send } from "lucide-react";
+import { Instagram, Linkedin, Mail, Phone, Send } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { Section } from "./section";
 
@@ -32,15 +32,21 @@ export function Contact() {
             {
               icon: Mail,
               label: "Email",
-              value: "patelsankit16@gmail.com",
-              href: "mailto:patelsankit16@gmail.com",
+              value: "patelsankit16@gmai.com",
+              href: "mailto:patelsankit16@gmai.com",
             },
             { icon: Phone, label: "Phone", value: "+91 95745 40106", href: "tel:+919574540106" },
             {
               icon: Linkedin,
               label: "LinkedIn",
-              value: "linkedin.com/in/sankit-parasiya",
-              href: "https://www.linkedin.com/",
+              value: "linkedin.com/in/sankit-parasiya-82970416a",
+              href: "https://in.linkedin.com/in/sankit-parasiya-82970416a",
+            },
+            {
+              icon: Instagram,
+              label: "Instagram",
+              value: "@sankitp6",
+              href: "https://www.instagram.com/sankitp6",
             },
           ].map((c) => (
             <a
