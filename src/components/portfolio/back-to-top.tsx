@@ -1,42 +1,55 @@
 import { ArrowUp } from "lucide-react";
+import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 export function BackToTop() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const pathLength = useSpring(scrollYProgress, { stiffness: 400, damping: 90 });
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      if (window.scrollY > 300) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
-    };
-
-    window.addEventListener("scroll", toggleVisibility);
-    return () => window.removeEventListener("scroll", toggleVisibility);
+    const onScroll = () => setVisible(window.scrollY > 300);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
 
   return (
     <AnimatePresence>
-      {isVisible && (
+      {visible && (
         <motion.button
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.6 }}
           animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 z-50 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-border bg-card shadow-soft backdrop-blur-sm transition-all hover:border-foreground/50 hover:bg-muted hover:shadow-elegant focus:outline-none active:scale-95 sm:bottom-8 sm:right-8"
+          exit={{ opacity: 0, scale: 0.6 }}
+          transition={{ type: "spring", stiffness: 300, damping: 24 }}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.94 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-6 right-6 z-50 h-12 w-12 sm:bottom-8 sm:right-8"
           aria-label="Back to top"
         >
-          <ArrowUp className="h-5 w-5 text-foreground" />
+          {/* Scroll progress ring */}
+          <svg
+            className="absolute inset-0 -rotate-90"
+            viewBox="0 0 48 48"
+            fill="none"
+          >
+            {/* Background track */}
+            <circle cx="24" cy="24" r="22" strokeWidth="2" className="stroke-border" />
+            {/* Animated progress arc */}
+            <motion.circle
+              cx="24"
+              cy="24"
+              r="22"
+              strokeWidth="2"
+              strokeLinecap="round"
+              className="stroke-foreground"
+              style={{ pathLength }}
+            />
+          </svg>
+          {/* Inner button */}
+          <div className="absolute inset-1.5 flex items-center justify-center rounded-full bg-card border border-border/40 shadow-soft">
+            <ArrowUp className="h-4 w-4 text-foreground" />
+          </div>
         </motion.button>
       )}
     </AnimatePresence>

@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useRef, type ReactNode } from "react";
 import { ArrowRight, ImageIcon } from "lucide-react";
 import { Section } from "./section";
 
@@ -21,13 +22,6 @@ type Project = {
 };
 
 const projects: Project[] = [
-  // {
-  //   title: "Spanish Fork River Management",
-  //   description:
-  //     "A canal & sub-canal management platform for daily flow reporting. Built the UI from scratch and integrated APIs across modules with a focus on smooth UX.",
-  //   stack: ["Next.js", "TypeScript", "Tailwind", "Zustand", "Shadcn"],
-  //   category: "Web App",
-  // },
   {
     title: "Live Notepad",
     description:
@@ -46,7 +40,6 @@ const projects: Project[] = [
     href: "https://latesthub.vercel.app/",
     image: latesthubImg,
   },
-
   {
     title: "Wolto International",
     description:
@@ -99,28 +92,78 @@ const projects: Project[] = [
     category: "E-commerce",
     image: rayBanTegImg,
   },
-  // {
-  //   title: "Cypherplus",
-  //   description:
-  //     "Investment & account management platform. Designed required modules and contributed to state handling for design components.",
-  //   stack: ["Vue", "SCSS", "HTML/CSS"],
-  //   category: "Fintech",
-  // },
-  // {
-  //   title: "Yaalago",
-  //   description:
-  //     "A booking & task management tool for travel agencies. Designed module pages and updated existing pages for full responsiveness.",
-  //   stack: ["Tailwind", "SCSS", "Laravel-UI"],
-  //   category: "SaaS",
-  // },
-  // {
-  //   title: "TNGNET",
-  //   description:
-  //     "The Next Generation Network — a server buyer platform with admin & user portals, built with attention to cross-browser compatibility.",
-  //   stack: ["HTML", "Tailwind", "jQuery", "DataTables"],
-  //   category: "Marketplace",
-  // },
 ];
+
+/* ── 3-D tilt card ──────────────────────────────────── */
+function TiltCard({
+  href,
+  target,
+  rel,
+  children,
+  className,
+}: {
+  href?: string;
+  target?: string;
+  rel?: string;
+  children: ReactNode;
+  className?: string;
+}) {
+  const ref = useRef<HTMLAnchorElement>(null);
+  const rx = useMotionValue(0);
+  const ry = useMotionValue(0);
+  const shine = useMotionValue(0);
+
+  const rotX = useSpring(rx, { stiffness: 280, damping: 30 });
+  const rotY = useSpring(ry, { stiffness: 280, damping: 30 });
+  const shineOpacity = useSpring(shine, { stiffness: 200, damping: 32 });
+
+  const onMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    rx.set(((e.clientY - rect.top) / rect.height - 0.5) * 13);
+    ry.set(((e.clientX - rect.left) / rect.width - 0.5) * -13);
+    shine.set(1);
+  };
+
+  const onLeave = () => {
+    rx.set(0);
+    ry.set(0);
+    shine.set(0);
+  };
+
+  return (
+    <motion.a
+      ref={ref}
+      href={href}
+      target={target}
+      rel={rel}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      style={{
+        rotateX: rotX,
+        rotateY: rotY,
+        transformPerspective: 1100,
+      }}
+      className={`relative ${className ?? ""}`}
+    >
+      {children}
+      {/* Diagonal shine sweep */}
+      <motion.div
+        style={{ opacity: shineOpacity }}
+        className="absolute inset-0 rounded-2xl pointer-events-none overflow-hidden"
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(135deg, rgba(255,255,255,0.09) 0%, transparent 55%)",
+          }}
+        />
+      </motion.div>
+    </motion.a>
+  );
+}
 
 function ProjectImage({ image, title }: { image?: string; title: string }) {
   if (image) {
@@ -129,7 +172,7 @@ function ProjectImage({ image, title }: { image?: string; title: string }) {
         src={image}
         alt={`${title} preview`}
         loading="lazy"
-        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
       />
     );
   }
@@ -158,50 +201,54 @@ export function Projects() {
     >
       <div className="grid gap-6 md:grid-cols-2">
         {projects.map((p, i) => (
-          <motion.a
+          <motion.div
             key={p.title}
-            href={p.href ?? undefined}
-            target={p.href ? "_blank" : undefined}
-            rel={p.href ? "noreferrer" : undefined}
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5, delay: i * 0.05, ease: "easeOut" }}
-            whileHover={{ y: -4 }}
-            className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft hover:shadow-lift transition-all"
+            transition={{ duration: 0.55, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* Image */}
-            <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-border bg-muted">
-              <ProjectImage image={p.image} title={p.title} />
-            </div>
-
-            {/* Content */}
-            <div className="flex flex-1 flex-col p-6 sm:p-8">
-              {p.category && (
-                <span className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-foreground/80">
-                  {p.category}
-                </span>
-              )}
-              <h3 className="mb-3 text-xl font-semibold tracking-tight leading-snug">{p.title}</h3>
-              <p className="mb-6 flex-1 text-sm text-muted-foreground leading-relaxed">
-                {p.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                {p.stack.slice(0, 3).map((s) => (
-                  <span
-                    key={s}
-                    className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground border border-border/50"
-                  >
-                    {s}
-                  </span>
-                ))}
+            <TiltCard
+              href={p.href}
+              target={p.href ? "_blank" : undefined}
+              rel={p.href ? "noreferrer" : undefined}
+              className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft hover:shadow-lift transition-shadow"
+            >
+              {/* Image */}
+              <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-border bg-muted">
+                <ProjectImage image={p.image} title={p.title} />
               </div>
-              <span className="mt-auto inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-foreground transition-all group-hover:gap-2.5">
-                Learn More
-                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-              </span>
-            </div>
-          </motion.a>
+
+              {/* Content */}
+              <div className="flex flex-1 flex-col p-6 sm:p-8">
+                {p.category && (
+                  <span className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-foreground/80">
+                    {p.category}
+                  </span>
+                )}
+                <h3 className="mb-3 text-xl font-semibold tracking-tight leading-snug">
+                  {p.title}
+                </h3>
+                <p className="mb-6 flex-1 text-sm text-muted-foreground leading-relaxed">
+                  {p.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {p.stack.slice(0, 3).map((s) => (
+                    <span
+                      key={s}
+                      className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground border border-border/50"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+                <span className="mt-auto inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-foreground transition-all group-hover:gap-2.5">
+                  Learn More
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </div>
+            </TiltCard>
+          </motion.div>
         ))}
       </div>
     </Section>

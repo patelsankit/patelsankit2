@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
+import { useRef } from "react";
 import { Section } from "./section";
 
 const experiences = [
@@ -33,6 +34,14 @@ const experiences = [
 ];
 
 export function Experience() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 80%", "end 30%"],
+  });
+  const lineScaleY = useSpring(scrollYProgress, { stiffness: 70, damping: 28 });
+
   return (
     <Section
       id="experience"
@@ -42,26 +51,57 @@ export function Experience() {
     >
       <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-soft" />
       <div aria-hidden className="absolute inset-0 -z-10 noise opacity-60" />
-      <div className="relative">
-        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-border" />
+
+      <div ref={containerRef} className="relative">
+        {/* Draw-on-scroll timeline line */}
+        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px overflow-hidden -translate-x-px">
+          <motion.div
+            style={{ scaleY: lineScaleY, transformOrigin: "top" }}
+            className="absolute inset-0 bg-gradient-to-b from-foreground/10 via-border to-border/40"
+          />
+        </div>
+
         <div className="space-y-12">
           {experiences.map((exp, i) => (
             <motion.div
               key={exp.company}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{
+                opacity: 0,
+                x: i % 2 === 0 ? -48 : 48,
+                y: 16,
+              }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
+              transition={{
+                duration: 0.65,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className={`relative md:grid md:grid-cols-2 md:gap-12 ${
                 i % 2 === 0 ? "" : "md:[&>*:first-child]:order-2"
               }`}
             >
               <div
-                className={`pl-12 md:pl-0 ${i % 2 === 0 ? "md:text-right md:pr-12" : "md:pl-12"}`}
+                className={`pl-12 md:pl-0 ${
+                  i % 2 === 0 ? "md:text-right md:pr-12" : "md:pl-12"
+                }`}
               >
-                <div className="absolute left-4 md:left-1/2 top-2 -translate-x-1/2 grid h-3 w-3 place-items-center">
-                  <span className="h-3 w-3 rounded-full bg-gradient-primary ring-4 ring-background" />
+                {/* Animated timeline dot */}
+                <div className="absolute left-4 md:left-1/2 top-2 -translate-x-1/2 grid h-5 w-5 place-items-center">
+                  {/* Pulsing glow ring */}
+                  <span className="absolute h-5 w-5 rounded-full bg-gradient-primary opacity-30 animate-glow-ping" />
+                  <motion.span
+                    initial={{ scale: 0, rotate: -90 }}
+                    whileInView={{ scale: 1, rotate: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.15,
+                      ease: [0.34, 1.56, 0.64, 1],
+                    }}
+                    className="relative h-3 w-3 rounded-full bg-gradient-primary ring-4 ring-background block"
+                  />
                 </div>
+
                 <div className="text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground">
                   {exp.period}
                 </div>

@@ -183,4 +183,52 @@
   .noise {
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
   }
+
+  /* Custom cursor */
+  .cursor-none,
+  .cursor-none * {
+    cursor: none !important;
+  }
+
+  /* Dot grid background */
+  .dot-grid {
+    background-image: radial-gradient(circle, oklch(0.25 0.005 260 / 0.14) 1px, transparent 1px);
+    background-size: 30px 30px;
+  }
+  .dark .dot-grid {
+    background-image: radial-gradient(circle, oklch(1 0 0 / 0.055) 1px, transparent 1px);
+  }
+}
+
+/* ── Infinite marquee ─────────────────────────────────── */
+/*
+  Card = 96px (w-24), gap = 20px (gap-5).
+  One skill set = 5 cards = 5 × (96 + 20) = 580 px.
+  We render 8 copies so the track is always wider than any viewport.
+  The animation scrolls exactly 580 px (= 1 copy) then loops.
+*/
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-580px); }
+}
+@keyframes marquee-rev {
+  from { transform: translateX(-580px); }
+  to   { transform: translateX(0); }
+}
+.animate-marquee     { animation: marquee     26s linear infinite; }
+.animate-marquee-rev { animation: marquee-rev 32s linear infinite; }
+
+/* pause on hover */
+.marquee-track:hover .animate-marquee,
+.marquee-track:hover .animate-marquee-rev {
+  animation-play-state: paused;
+}
+
+/* ── Glow pulse for experience dots ───────────────────── */
+@keyframes glow-ping {
+  0%   { transform: scale(1);   opacity: 0.8; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+.animate-glow-ping {
+  animation: glow-ping 1.6s ease-out infinite;
 }
