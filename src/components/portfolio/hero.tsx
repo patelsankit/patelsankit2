@@ -210,7 +210,7 @@ export function Hero() {
           </motion.a>
           <motion.a
             ref={dlBtn.ref}
-            href="/sankit_parasiya_resume.pdf"
+            href="/pdf/sankit_parasiya_resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             onMouseMove={dlBtn.onMouseMove}
