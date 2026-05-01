@@ -48,6 +48,7 @@ export function Experience() {
       eyebrow="Experience"
       title="A timeline of building things"
       description="A look at where I've spent my time and the products I've helped ship."
+      className="overflow-hidden"
     >
       <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-soft" />
       <div aria-hidden className="absolute inset-0 -z-10 noise opacity-60" />

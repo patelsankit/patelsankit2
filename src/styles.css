@@ -202,21 +202,20 @@
 
 /* ── Infinite marquee ─────────────────────────────────── */
 /*
-  Card = 96px (w-24), gap = 20px (gap-5).
-  One skill set = 5 cards = 5 × (96 + 20) = 580 px.
-  We render 8 copies so the track is always wider than any viewport.
-  The animation scrolls exactly 580 px (= 1 copy) then loops.
+  Card = 120px, gap = 16px (gap-4).
+  One skill set = 5 cards = 5 × (120 + 16) = 680 px.
+  We render 8 copies; animation scrolls exactly 680 px (1 copy) then loops.
 */
 @keyframes marquee {
   from { transform: translateX(0); }
-  to   { transform: translateX(-580px); }
+  to   { transform: translateX(-680px); }
 }
 @keyframes marquee-rev {
-  from { transform: translateX(-580px); }
+  from { transform: translateX(-680px); }
   to   { transform: translateX(0); }
 }
-.animate-marquee     { animation: marquee     26s linear infinite; }
-.animate-marquee-rev { animation: marquee-rev 32s linear infinite; }
+.animate-marquee     { animation: marquee     24s linear infinite; }
+.animate-marquee-rev { animation: marquee-rev 30s linear infinite; }
 
 /* pause on hover */
 .marquee-track:hover .animate-marquee,

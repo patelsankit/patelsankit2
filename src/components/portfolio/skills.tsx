@@ -57,14 +57,14 @@ function SkillCard({ skill }: { skill: Skill }) {
       onMouseMove={onMove}
       onMouseLeave={onLeave}
       style={{ rotateX: rotX, rotateY: rotY, transformPerspective: 700 }}
-      className="relative flex h-24 w-24 flex-shrink-0 items-center justify-center rounded-2xl border border-border/40 bg-card/60 shadow-soft backdrop-blur-sm transition-colors duration-300 hover:border-border/80 hover:bg-card hover:shadow-elegant group"
+      className="relative flex h-[120px] w-[120px] flex-shrink-0 items-center justify-center rounded-2xl border border-border/40 bg-card/60 shadow-soft backdrop-blur-sm transition-colors duration-300 hover:border-border/80 hover:bg-card hover:shadow-elegant group"
       title={skill.name}
     >
       <img
         src={skill.image}
         alt={skill.name}
         loading="lazy"
-        className={`h-11 w-11 object-contain transition-transform duration-300 group-hover:scale-110 ${skill.invert ? "invert dark:invert-0" : ""}`}
+        className={`h-[60px] w-[60px] object-contain transition-transform duration-300 group-hover:scale-110 ${skill.invert ? "invert dark:invert-0" : ""}`}
       />
       <div
         className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
@@ -76,12 +76,12 @@ function SkillCard({ skill }: { skill: Skill }) {
 
 /* ── Infinite marquee row ───────────────────────────── */
 function MarqueeRow({ skills, reverse }: { skills: Skill[]; reverse?: boolean }) {
-  /* 8 copies → track ≈ 8 × 580 = 4640 px, covers any viewport.
-     Animation moves exactly 580 px (1 copy), so the loop is seamless. */
+  /* 8 copies → track ≈ 8 × 380 = 3040 px, always wider than the container.
+     Animation moves exactly 380 px (1 copy), so the loop is seamless. */
   const copies = Array.from({ length: 8 }, () => skills).flat();
   return (
-    <div className="overflow-hidden py-3 marquee-track">
-      <div className={`flex gap-5 ${reverse ? "animate-marquee-rev" : "animate-marquee"}`}>
+    <div className="overflow-hidden py-2 marquee-track">
+      <div className={`flex gap-4 ${reverse ? "animate-marquee-rev" : "animate-marquee"}`}>
         {copies.map((skill, i) => (
           <SkillCard key={`${skill.name}-${i}`} skill={skill} />
         ))}
@@ -90,14 +90,12 @@ function MarqueeRow({ skills, reverse }: { skills: Skill[]; reverse?: boolean })
   );
 }
 
-/* ── Section header (inlined so marquee can be full-bleed) ── */
 export function Skills() {
   const headerRef = useRef<HTMLDivElement>(null);
   const inView = useInView(headerRef, { once: true, amount: 0.2 });
 
   return (
     <section id="skills" className="relative py-24 sm:py-32 overflow-hidden">
-      {/* Constrained header */}
       <div className="mx-auto max-w-6xl px-6">
         <div ref={headerRef} className="mb-14 max-w-2xl">
           {/* Eyebrow */}
@@ -138,12 +136,11 @@ export function Skills() {
             A curated stack I use to build modern, responsive, and maintainable web apps.
           </motion.p>
         </div>
-      </div>
-
-      {/* Full-bleed marquee — outside the max-w container */}
-      <div className="space-y-4">
-        <MarqueeRow skills={ROW_1} />
-        <MarqueeRow skills={ROW_2} reverse />
+        {/* Marquee — contained inside the same max-w-6xl as Projects */}
+        <div className="space-y-3">
+          <MarqueeRow skills={ROW_1} />
+          <MarqueeRow skills={ROW_2} reverse />
+        </div>
       </div>
     </section>
   );
