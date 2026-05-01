@@ -1,6 +1,6 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useRef, useCallback } from "react";
-import { ArrowDown, ArrowRight, Download, Github, Instagram, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, ArrowRight, Eye, Github, Instagram, Linkedin, Mail } from "lucide-react";
 
 /* ── Magnetic hook ───────────────────────────────────── */
 function useMagnetic<T extends HTMLElement = HTMLElement>(strength = 0.3) {
@@ -211,14 +211,15 @@ export function Hero() {
           <motion.a
             ref={dlBtn.ref}
             href="/sankit_parasiya_resume.pdf"
-            download
+            target="_blank"
+            rel="noopener noreferrer"
             onMouseMove={dlBtn.onMouseMove}
             onMouseLeave={dlBtn.onMouseLeave}
             style={{ x: dlBtn.x, y: dlBtn.y }}
             className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-6 py-3 text-sm font-medium backdrop-blur-md transition-colors hover:bg-muted"
           >
-            <Download className="h-4 w-4" />
-            Download Resume
+            <Eye className="h-4 w-4" />
+            Preview Resume
           </motion.a>
         </motion.div>
 
