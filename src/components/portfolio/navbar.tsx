@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { Menu, Moon, Sun, X, FileText } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { useTheme } from "./theme-provider";
 
 const links = [
@@ -113,6 +114,15 @@ export function Navbar() {
               </a>
             </li>
           ))}
+          <li>
+            <Link
+              to="/resume"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border/60 text-sm font-medium dark:text-white/80 transition-colors hover:text-foreground hover:bg-muted"
+            >
+              <FileText className="h-3.5 w-3.5" />
+              Resume
+            </Link>
+          </li>
         </ul>
 
         <div className="flex items-center gap-2">
@@ -155,6 +165,16 @@ export function Navbar() {
                     </a>
                   </li>
                 ))}
+                <li>
+                  <Link
+                    to="/resume"
+                    onClick={() => setOpen(false)}
+                    className="flex items-center gap-2 rounded-xl px-4 py-2.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                  >
+                    <FileText className="h-4 w-4" />
+                    Resume
+                  </Link>
+                </li>
               </ul>
             </motion.div>
           )}
