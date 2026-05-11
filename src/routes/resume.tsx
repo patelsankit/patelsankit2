@@ -23,7 +23,10 @@ function ThemeToggle() {
   const { theme, toggle } = useTheme();
   return (
     <button
-      onClick={toggle}
+      onClick={(e) => {
+        const rect = (e.currentTarget as HTMLButtonElement).getBoundingClientRect();
+        toggle({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
+      }}
       className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-background/70 backdrop-blur-md transition-colors hover:bg-muted"
       aria-label="Toggle theme"
     >

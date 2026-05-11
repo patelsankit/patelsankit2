@@ -44,7 +44,7 @@ export function CursorGlow() {
       {/* Outer ring — lags behind */}
       <motion.div
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[9999] rounded-full border border-foreground/55 mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 z-[9999] rounded-full border border-white mix-blend-difference"
         style={{
           x: ringX,
           y: ringY,
@@ -58,7 +58,7 @@ export function CursorGlow() {
       {/* Inner dot — snappy */}
       <motion.div
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[9999] rounded-full bg-foreground mix-blend-difference"
+        className="pointer-events-none fixed left-0 top-0 z-[9999] rounded-full bg-white mix-blend-difference"
         style={{
           x: dotX,
           y: dotY,

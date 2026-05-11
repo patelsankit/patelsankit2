@@ -14,11 +14,28 @@ const links = [
 
 const skills = ["React", "Next.js", "TypeScript", "Tailwind CSS", "Node.js"];
 
+const BURST = [
+  { angle: 0,   r: 32, size: 6 },
+  { angle: 45,  r: 26, size: 4 },
+  { angle: 90,  r: 34, size: 7 },
+  { angle: 135, r: 24, size: 4 },
+  { angle: 180, r: 32, size: 6 },
+  { angle: 225, r: 26, size: 4 },
+  { angle: 270, r: 34, size: 7 },
+  { angle: 315, r: 28, size: 5 },
+  { angle: 22,  r: 30, size: 3 },
+  { angle: 112, r: 28, size: 3 },
+  { angle: 202, r: 30, size: 3 },
+  { angle: 292, r: 28, size: 3 },
+];
+
 export function Navbar() {
   const { theme, toggle } = useTheme();
   const [open, setOpen] = useState(false);
   const [profileHover, setProfileHover] = useState(false);
+  const [bursting, setBursting] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  const toggleBtnRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -35,6 +52,21 @@ export function Navbar() {
       document.removeEventListener("mousedown", onOutsideClick);
     };
   }, [open]);
+
+  const handleThemeToggle = () => {
+    const rect = toggleBtnRef.current?.getBoundingClientRect();
+    const origin = rect
+      ? { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }
+      : undefined;
+    toggle(origin);
+    setBursting(true);
+    setTimeout(() => setBursting(false), 650);
+  };
+
+  const particleColor =
+    theme === "light"
+      ? "oklch(0.55 0.22 270)"  // blue/indigo going into dark
+      : "oklch(0.88 0.2 80)";   // golden going into light
 
   return (
     <motion.header
@@ -126,13 +158,59 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <button
-            onClick={toggle}
-            aria-label="Toggle theme"
-            className="grid h-9 w-9 place-items-center rounded-full border border-border/60 bg-background/70 transition-transform hover:scale-110"
-          >
-            {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-          </button>
+          {/* Theme toggle with burst particles */}
+          <div className="relative">
+            <motion.button
+              ref={toggleBtnRef}
+              onClick={handleThemeToggle}
+              aria-label="Toggle theme"
+              animate={bursting ? { scale: [1, 1.14, 0.97, 1] } : {}}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="relative grid h-9 w-9 place-items-center rounded-full border border-border/60 bg-background/70 overflow-hidden"
+            >
+              {/* ripple ring */}
+              {bursting && (
+                <span className="theme-ripple absolute inset-0 rounded-full bg-primary/30 pointer-events-none" />
+              )}
+
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={theme}
+                  initial={{ rotate: theme === "dark" ? 40 : -40, scale: 0.55, opacity: 0 }}
+                  animate={{ rotate: 0, scale: 1, opacity: 1 }}
+                  exit={{ rotate: theme === "dark" ? -40 : 40, scale: 0.55, opacity: 0 }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex items-center justify-center"
+                >
+                  {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                </motion.span>
+              </AnimatePresence>
+            </motion.button>
+
+            {/* particle burst */}
+            <AnimatePresence>
+              {bursting &&
+                BURST.map((p) => (
+                  <motion.span
+                    key={p.angle}
+                    initial={{ x: 0, y: 0, scale: 1, opacity: 1 }}
+                    animate={{
+                      x: Math.cos((p.angle * Math.PI) / 180) * p.r,
+                      y: Math.sin((p.angle * Math.PI) / 180) * p.r,
+                      scale: 0,
+                      opacity: 0,
+                    }}
+                    transition={{ duration: 0.55 + (p.angle % 45) * 0.003, ease: [0.16, 1, 0.3, 1] }}
+                    className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                    style={{
+                      width: p.size,
+                      height: p.size,
+                      background: particleColor,
+                    }}
+                  />
+                ))}
+            </AnimatePresence>
+          </div>
 
           <button
             onClick={() => setOpen((o) => !o)}

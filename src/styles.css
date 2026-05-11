@@ -231,3 +231,42 @@
 .animate-glow-ping {
   animation: glow-ping 1.6s ease-out infinite;
 }
+
+/* ── Theme toggle — view-transition circular reveal ───── */
+
+/* Register --vt-r so browsers can interpolate it in @keyframes */
+@property --vt-r {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+@keyframes vt-reveal-circle {
+  from { clip-path: circle(0%   at var(--vt-x, 50%) var(--vt-y, 50%)); }
+  to   { clip-path: circle(150% at var(--vt-x, 50%) var(--vt-y, 50%)); }
+}
+
+/* Old page: subtly dims + scales toward the origin — feels like it "sinks back" */
+@keyframes vt-exit-old {
+  from { opacity: 1;    transform: scale(1);     filter: brightness(1); }
+  to   { opacity: 0.88; transform: scale(0.982);  filter: brightness(0.91); }
+}
+
+::view-transition-old(root) {
+  animation: vt-exit-old 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: var(--vt-x, 50%) var(--vt-y, 50%);
+}
+
+::view-transition-new(root) {
+  animation: vt-reveal-circle 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: clip-path;
+}
+
+/* ── Theme button — ripple ring ───────────────────────── */
+@keyframes theme-ripple {
+  0%   { transform: scale(1);   opacity: 0.55; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+.theme-ripple {
+  animation: theme-ripple 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
